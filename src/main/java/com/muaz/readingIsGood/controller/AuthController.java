@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private  AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
     @Autowired
-    private  JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
     @Autowired
-    private  JwtUserDetailsService userDetailsService;
+    private JwtUserDetailsService userDetailsService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody CustomerDTO authenticationRequest) throws Exception {
@@ -41,7 +41,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> createCustomer(@RequestBody CustomerDTO customerDTO) throws Exception {
+    public ResponseEntity<?> createCustomer(@RequestBody CustomerDTO customerDTO) {
         return ResponseEntity.ok(userDetailsService.createCustomer(customerDTO));
     }
 

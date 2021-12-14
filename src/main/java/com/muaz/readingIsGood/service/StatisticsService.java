@@ -25,7 +25,7 @@ public class StatisticsService {
         Map<Integer, List<Orders>> map = ordersList.stream().collect(Collectors.groupingBy(element
                 -> element.getCreatedOn().getMonthValue()));
 
-        for (Map.Entry<Integer, List<Orders>> entry: map.entrySet()) {
+        for (Map.Entry<Integer, List<Orders>> entry : map.entrySet()) {
             Statistics statistics = new Statistics();
             Integer key = entry.getKey();
             List<Orders> orders = entry.getValue();
@@ -34,11 +34,11 @@ public class StatisticsService {
             statistics.setOrderCount(orders.size());
             statistics.setMonth(Month.of(key));
             statistics.setTotalPurchasedAmount(
-            orders.stream()
-                    .map(Orders::getPurchasedAmount)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add));
+                    orders.stream()
+                            .map(Orders::getPurchasedAmount)
+                            .reduce(BigDecimal.ZERO, BigDecimal::add));
             statistics.setBookCount(
-                    orders.stream().flatMap(order->order.getOrderItemList().stream()).map(OrderItem::getQuantity).reduce(0,Integer::sum));
+                    orders.stream().flatMap(order -> order.getOrderItemList().stream()).map(OrderItem::getQuantity).reduce(0, Integer::sum));
 
             statisticsList.add(statistics);
         }

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "orderItem")
-public class OrderItem extends BaseEntity{
+public class OrderItem extends BaseEntity {
 
     @OneToOne
     private Book book;

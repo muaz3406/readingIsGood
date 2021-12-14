@@ -17,21 +17,21 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private  BookService bookService;
+    private BookService bookService;
 
     @PostMapping(path = "/addBook")
-    public ResponseEntity<Book> create(Book book){
+    public ResponseEntity<Book> create(Book book) {
         try {
-            return new ResponseEntity<>(bookService.addBook(book),HttpStatus.CREATED);
+            return new ResponseEntity<>(bookService.addBook(book), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping(path = "/addBookList")
-    public ResponseEntity<List> create(@RequestBody List<Book> bookList){
+    public ResponseEntity<List> create(@RequestBody List<Book> bookList) {
         try {
-            return new ResponseEntity<>(bookService.addBookList(bookList),HttpStatus.CREATED);
+            return new ResponseEntity<>(bookService.addBookList(bookList), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

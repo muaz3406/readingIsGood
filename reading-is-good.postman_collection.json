@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"muaz\",\r\n    \"password\":\"getir123\"\r\n}",
+					"raw": "{\r\n    \"userName\":\"muaz\",\r\n    \"password\":\"Muaz123!!\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,14 +20,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/login",
+					"raw": "http://localhost:8080/api/auth/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"login"
+						"api",
+						"auth",
+						"register"
 					]
 				}
 			},
@@ -35,34 +37,33 @@
 		},
 		{
 			"name": "getStatisticsByCustomerId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
 			},
-			"response": []
-		},
-		{
-			"name": "doPay",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWF6IiwiZXhwIjoxNjM5NTM2MjQ4LCJpYXQiOjE2Mzk1MTgyNDh9.JI0SA7CkKvR4BASQyQW7eyMTwddS-eja0dK-AdoGK3v4sitmsVo5E8vSpn6cQD5LP0YdD7B_DGAt1V5jEblO0Q",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "addBook",
-			"request": {
-				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "customerId",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\r\n    \"name\": \"kaşağı\",\r\n    \"price\": 35.00,\r\n    \"totalQuantity\": 11\r\n},\r\n{\r\n    \"name\": \"at kafası\",\r\n    \"price\": 12.00,\r\n    \"totalQuantity\": 10\r\n},\r\n{\r\n    \"name\": \"böö\",\r\n    \"price\": 21.00,\r\n    \"totalQuantity\": 3\r\n}\r\n]",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -70,14 +71,94 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/app/bookService/addBookList",
+					"raw": "http://localhost:8080/api/statisticService/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"app",
+						"api",
+						"statisticService",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "doPay",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWF6IiwiZXhwIjoxNjM5NTM2MjQ4LCJpYXQiOjE2Mzk1MTgyNDh9.JI0SA7CkKvR4BASQyQW7eyMTwddS-eja0dK-AdoGK3v4sitmsVo5E8vSpn6cQD5LP0YdD7B_DGAt1V5jEblO0Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderItemDtoList\": [\r\n        {\r\n            \"bookId\":2,\r\n            \"quantity\": 3\r\n        },\r\n        {\r\n            \"bookId\":3,\r\n            \"quantity\": 2\r\n        }\r\n    ],\r\n    \"customerId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/orderService/doOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orderService",
+						"doOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addBook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWF6IiwiZXhwIjoxNjM5NTM2MjQ4LCJpYXQiOjE2Mzk1MTgyNDh9.JI0SA7CkKvR4BASQyQW7eyMTwddS-eja0dK-AdoGK3v4sitmsVo5E8vSpn6cQD5LP0YdD7B_DGAt1V5jEblO0Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"name\": \"kaşağı\",\r\n    \"price\": 35.00,\r\n    \"totalQuantity\": 11\r\n},\r\n{\r\n    \"name\": \"at kafası\",\r\n    \"price\": 12.00,\r\n    \"totalQuantity\": 10\r\n},\r\n{\r\n    \"name\": \"böö\",\r\n    \"price\": 21.00,\r\n    \"totalQuantity\": 3\r\n},\r\n{\r\n    \"name\": \"zzz\",\r\n    \"price\": 41.00,\r\n    \"totalQuantity\": 33\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/bookService/addBookList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
 						"bookService",
 						"addBookList"
 					]
@@ -88,17 +169,31 @@
 		{
 			"name": "authenticate",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"muaz\",\r\n    \"password\":\"Muaz123!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/register",
+					"raw": "http://localhost:8080/api/auth/authenticate",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"register"
+						"api",
+						"auth",
+						"authenticate"
 					]
 				}
 			},
@@ -107,10 +202,31 @@
 		{
 			"name": "getAllOrdersByCustomerId",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWF6IiwiZXhwIjoxNjM5NDAxNDIyLCJpYXQiOjE2MzkzODM0MjJ9.ED5mohYpCIg6wS3mN647v1pIteJCHh6-gXjMjyle8UYh-juoGa7-bS3ICfAJRjf5lVCQsqRz0XomN72dqIWCOg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/orderService/getAllOrdersByCustomerId/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orderService",
+						"getAllOrdersByCustomerId",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -118,10 +234,31 @@
 		{
 			"name": "getOrderById",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWF6IiwiZXhwIjoxNjM5NDAxNDIyLCJpYXQiOjE2MzkzODM0MjJ9.ED5mohYpCIg6wS3mN647v1pIteJCHh6-gXjMjyle8UYh-juoGa7-bS3ICfAJRjf5lVCQsqRz0XomN72dqIWCOg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/orderService/getOrderById/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"orderService",
+						"getOrderById",
+						"8"
+					]
 				}
 			},
 			"response": []
